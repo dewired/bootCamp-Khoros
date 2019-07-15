@@ -5,8 +5,8 @@ import java.util.List;
 
 public class Tweeter {
 
-    private static Twitter tweeter = TwitterFactory.getSingleton();
-    private static List<Status> home;
+    private Twitter tweeter = TwitterFactory.getSingleton();
+    private List<Status> home;
 
     public void tweetPost(String tweet) {
 
