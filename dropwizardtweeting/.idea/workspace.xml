@@ -1,14 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7d93acbe-8c04-4b4f-8054-b467aac859d6" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../tweeter/src/main/java/Apllication.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../tweeter/src/main/java/Config.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../tweeter/src/main/java/GetHomePage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../tweeter/src/main/java/TweetMessage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../tweeter/src/main/java/oauth.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../tweeter/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../tweeter/pom.xml" afterDir="false" />
-    </list>
+    <list default="true" id="7d93acbe-8c04-4b4f-8054-b467aac859d6" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -82,6 +75,9 @@
       <pane id="PackagesPane" />
       <pane id="Scope" />
     </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">

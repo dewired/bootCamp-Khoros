@@ -9,7 +9,39 @@ public class Config extends Configuration {
         private String template;
 
         @NotEmpty
+        private String consumerKey;
+
+        @NotEmpty
+        private String consumerSecret;
+
+        @NotEmpty
+        private String accessToken;
+
+        @NotEmpty
+        private String accessTokenSecret;
+
+        @NotEmpty
         private String defaultName = "Stranger";
+
+        @JsonProperty
+        public String getConsumerKey() { return consumerKey; }
+
+        @JsonProperty
+        public String getConsumerSecret() {
+            return consumerSecret;
+        }
+
+
+        @JsonProperty
+        public String getAccessToken() {
+            return accessToken;
+        }
+
+        @JsonProperty
+        public String getAccessTokenSecret() {
+        return accessTokenSecret;
+    }
+
 
         @JsonProperty
         public String getTemplate() {
@@ -21,14 +53,14 @@ public class Config extends Configuration {
             this.template = template;
         }
 
-//        @JsonProperty
-//        public String getDefaultName() {
-//            return defaultName;
-//        }
-//
-//        @JsonProperty
-//        public void setDefaultName(String name) {
-//            this.defaultName = name;
-//        }
+        @JsonProperty
+        public String getDefaultName() {
+            return defaultName;
+        }
+
+        @JsonProperty
+        public void setDefaultName(String name) {
+            this.defaultName = name;
+        }
     }
 
