@@ -14,16 +14,9 @@ public class TweetMessage {
 
     //private String message = "Testing101";
 
-    public TweetMessage(String consumerKey, String consumerSecret, String accessToken, String accessTokenSecret){
+    public TweetMessage(Twitter twitter){
 
-        ConfigurationBuilder cb = new ConfigurationBuilder();
-        cb.setDebugEnabled(true);
-        cb.setOAuthConsumerKey(consumerKey);
-        cb.setOAuthConsumerSecret(consumerSecret);
-        cb.setOAuthAccessToken(accessToken);
-        cb.setOAuthAccessTokenSecret(accessTokenSecret);
-        TwitterFactory tf = new TwitterFactory(cb.build());
-        twitter = tf.getInstance();
+        this.twitter = twitter;
     }
 
     @GET
@@ -35,14 +28,18 @@ public class TweetMessage {
 
     @POST
     @Timed
-    public void Something( @DefaultValue("ek ladki ko dekha toh aisa laga...") @QueryParam("message") String message) {
-        try {
-            twitter.updateStatus(message);
-        } catch (TwitterException e) {
-            return;
-        }
+    public String postTweet (@DefaultValue("default") @QueryParam("message") String message) throws TwitterException{
+//        try {
+            Status statusupdate = twitter.updateStatus(message);
+            return "Success";
+
+//        } catch (TwitterException e) {
+//            return "Exception";
+//        }
     }
 //    public Response tweetMessage(@QueryParam("message") Optional<String> message) throws TwitterException {
 //
 //    }
+
+
 }

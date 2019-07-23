@@ -18,6 +18,7 @@ public class GetHomePage {
     public GetHomePage(Twitter instance) {
 
         twitter = instance;
+        //this.twitter.setOAuthConsumer(instance.get);
 
     }
 
