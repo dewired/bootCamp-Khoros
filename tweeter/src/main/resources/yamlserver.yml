@@ -1,0 +1,17 @@
+server:
+  applicationConnectors:
+    - type: http
+      port: 8000
+  adminConnectors:
+    - type: http
+      port: 8001
+template: Hello, %s!
+defaultName: Stranger
+consumerKey: JcXsrF9thqswqY1NnXEcCgcbx
+consumerSecret: WOQfhdLKJ1JlABicl6frwQ6bo20jKLrJ68X3hc4bkURAuQTsJS
+accessToken: 2796243411-ohs2c0IUstgbMYaLvpnORoZg6p0tfSQlP9haGyb
+accessTokenSecret: UvmsOY8cfNQrJ7D21qrW8eG6yfUVmrS39o15L07d4G4la
+
+#oauth:
+#  consumerKey: sr;gljsr;gjwepjg
+#  consumeSecret: sgrjhgmvn r
