@@ -1,3 +1,4 @@
+import com.akash.resources.TweetResource;
 import io.dropwizard.Application;
 import io.dropwizard.setup.Environment;
 import twitter4j.Twitter;
@@ -40,9 +41,16 @@ public class Main extends Application<Config> {
         cb.setOAuthAccessTokenSecret(config.getAccessTokenSecret());
         TwitterFactory tf = new TwitterFactory(cb.build());
         Twitter twitter =  tf.getInstance();
-        final GetHomePage resource = new GetHomePage(twitter);
-        final TweetMessage tweeter = new TweetMessage(twitter);
+
+
+//        final GetHomePage resource = new GetHomePage(twitter);
+//        final TweetMessage tweeter = new TweetMessage(twitter);
+//        environment.jersey().register(resource);
+//        environment.jersey().register(tweeter);
+
+        final TweetResource resource = new TweetResource(twitter);
+
         environment.jersey().register(resource);
-        environment.jersey().register(tweeter);
+
     }
 }

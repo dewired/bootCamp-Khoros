@@ -8,9 +8,17 @@ import javax.ws.rs.core.Response;
 import java.util.List;
 import java.util.Optional;
 
+
+interface getPostNew{
+
+    Response fetch() throws TwitterException;
+    void post(String s);
+
+}
+
 @Path("/hello-world")
 @Produces(MediaType.APPLICATION_JSON)
-public class GetHomePage {
+public class GetHomePage implements getPostNew{
 
 
     private Twitter twitter;
@@ -24,14 +32,14 @@ public class GetHomePage {
 
     @GET
     @Timed
-    public Response sayHello() throws TwitterException {
+    public Response fetch() throws TwitterException {
         final List<Status> value = twitter.getHomeTimeline(new Paging());
         return Response.ok(value).build();
     }
 
     @POST
     @Timed
-    public void TweetMessage(String tweet) {
+    public void post(String tweet) {
         String message = "Hello";
         try {
             twitter.updateStatus(tweet);
