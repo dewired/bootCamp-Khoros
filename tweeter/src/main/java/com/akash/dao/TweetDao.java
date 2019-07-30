@@ -1,12 +1,18 @@
 package com.akash.dao;
 
-import java.util.HashMap;
+import com.akash.models.Pojo;
 
-public interface TweetDao<message> {
+import java.util.List;
+
+public interface TweetDao {
 
     String getMessage();
 
     void posted(String message);
+
+    long putCache(List<Pojo> timeline, long expTimeInMillis);
+
+    List<Pojo> getCache();
 
     void printMap();
 

@@ -1,12 +1,16 @@
 package com.akash.dao.impl;
 
 import com.akash.dao.TweetDao;
+import com.akash.models.Pojo;
 
 import java.util.HashMap;
+import java.util.List;
 
 public class TweetDaoImpl implements TweetDao {
 
     HashMap<String, String> data;
+    List<Pojo> tweets;
+    long expirationTime;
 
     public TweetDaoImpl() {
         data = new HashMap<>();
@@ -22,6 +26,19 @@ public class TweetDaoImpl implements TweetDao {
         return msg;
     }
 
+   @Override
+    public long putCache(List<Pojo> timeline, long expTimeInMillis) {
+        expirationTime = System.currentTimeMillis() + expTimeInMillis;
+        tweets = timeline;
+        return expirationTime;
+    }
+
+    @Override
+    public List<Pojo> getCache() {
+
+        return tweets;
+
+    }
 
     @Override
     public void printMap() {

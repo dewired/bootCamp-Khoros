@@ -28,6 +28,13 @@
                     <target>8</target>
                 </configuration>
             </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.19.1</version>
+            </plugin>
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
@@ -55,25 +62,25 @@
                             <transformers>
                                 <transformer implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer"/>
                                 <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                                    <mainClass>Main</mainClass>
+                                    <mainClass>com.akash.Main</mainClass>
                                 </transformer>
                             </transformers>
                         </configuration>
                     </execution>
                 </executions>
             </plugin>
-<!--            <plugin>-->
-<!--                <inherited>true</inherited>-->
-<!--                <artifactId>maven-javadoc-plugin</artifactId>-->
-<!--                <executions>-->
-<!--                    <execution>-->
-<!--                        <id>attach-javadocs</id>-->
-<!--                        <goals>-->
-<!--                            <goal>jar</goal>-->
-<!--                        </goals>-->
-<!--                    </execution>-->
-<!--                </executions>-->
-<!--            </plugin>-->
+            <plugin>
+                <inherited>true</inherited>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
     <properties>
@@ -143,22 +150,16 @@
             <version>2.7</version>
         </dependency>
 <!--        <dependency>-->
-<!--            <groupId>org.glassfish.jersey.containers</groupId>-->
-<!--            <artifactId>jersey-container-servlet-core</artifactId>-->
-<!--            <version>2.29</version>-->
+<!--            <groupId>redis.clients</groupId>-->
+<!--            <artifactId>jedis</artifactId>-->
+<!--            <version>3.0.1</version>-->
 <!--        </dependency>-->
 
-        <!--        <dependency>-->
-<!--            <groupId>org.slf4j</groupId>-->
-<!--            <artifactId>slf4j-api</artifactId>-->
-<!--            <version>1.7.25</version>-->
-<!--        </dependency>-->
-
-<!--        <dependency>-->
-<!--            <groupId>org.slf4j</groupId>-->
-<!--            <artifactId>slf4j-simple</artifactId>-->
-<!--            <version>1.7.25</version>-->
-<!--        </dependency>-->
+        <dependency>
+            <groupId>org.redisson</groupId>
+            <artifactId>redisson</artifactId>
+            <version>3.11.1</version>
+        </dependency>
     </dependencies>
 
     <profiles>
@@ -188,6 +189,7 @@
                         <artifactId>maven-surefire-plugin</artifactId>
                         <configuration>
                             <skip>true</skip>
+                            <testFailureIgnore>true</testFailureIgnore>
                         </configuration>
                     </plugin>
                     <plugin>
@@ -233,6 +235,7 @@
                         <artifactId>maven-surefire-plugin</artifactId>
                         <configuration>
                             <skip>true</skip>
+                            <testFailureIgnore>true</testFailureIgnore>
                         </configuration>
                     </plugin>
                     <plugin>

@@ -14,6 +14,10 @@
         </configuration>
       </plugin>
       <plugin>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>2.19.1</version>
+      </plugin>
+      <plugin>
         <artifactId>maven-shade-plugin</artifactId>
         <version>2.3</version>
         <executions>
@@ -26,7 +30,7 @@
               <transformers>
                 <transformer />
                 <transformer>
-                  <mainClass>Main</mainClass>
+                  <mainClass>com.akash.Main</mainClass>
                 </transformer>
               </transformers>
             </configuration>
@@ -45,6 +49,18 @@
             </filter>
           </filters>
         </configuration>
+      </plugin>
+      <plugin>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>attach-javadocs</id>
+            <goals>
+              <goal>jar</goal>
+            </goals>
+          </execution>
+        </executions>
+        <inherited>true</inherited>
       </plugin>
     </plugins>
   </build>
@@ -74,6 +90,7 @@
             <artifactId>maven-surefire-plugin</artifactId>
             <configuration>
               <skip>true</skip>
+              <testFailureIgnore>true</testFailureIgnore>
             </configuration>
           </plugin>
           <plugin>
@@ -118,6 +135,7 @@
             <artifactId>maven-surefire-plugin</artifactId>
             <configuration>
               <skip>true</skip>
+              <testFailureIgnore>true</testFailureIgnore>
             </configuration>
           </plugin>
           <plugin>
