@@ -1,12 +1,17 @@
 package com.akash.resources;
 
+import com.akash.Main;
 import com.akash.cache.redisCache;
 import com.akash.dao.TweetDao;
 import com.akash.dao.TweetDaoFactory;
 import com.akash.models.Pojo;
 import com.akash.services.TweetService;
 import com.akash.services.TweetServiceFactory;
+import com.google.inject.Inject;
+import com.google.inject.name.Named;
 import twitter4j.Twitter;
+import twitter4j.TwitterFactory;
+import twitter4j.conf.ConfigurationBuilder;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -27,10 +32,28 @@ public class TweetResource {
     TweetDao cache = TweetDaoFactory.getInstance().getDao();
     redisCache redis = new redisCache();
 
-    public TweetResource(Twitter instance, long expTime) {
+    @Inject
+    private TweetService svc;
 
-        twitter = instance;
-        expTimeInMillis = expTime;
+
+    @Inject
+    public TweetResource(
+            @Named("consumerKey") String consumerKey,
+            @Named("consumerSecret") String consumerSecret,
+            @Named("accessToken") String accessToken,
+            @Named("accessTokenSecret") String accessTokenSecret,
+            @Named("expTime") long expTimeInMillis) {
+
+        ConfigurationBuilder cb = new ConfigurationBuilder();
+        cb.setDebugEnabled(true);
+        cb.setOAuthConsumerKey(consumerKey);
+        cb.setOAuthConsumerSecret(consumerSecret);
+        cb.setOAuthAccessToken(accessToken);
+        cb.setOAuthAccessTokenSecret(accessTokenSecret);
+        this.expTimeInMillis = expTimeInMillis;
+        TwitterFactory tf = new TwitterFactory(cb.build());
+        twitter =  tf.getInstance();
+
     }
 
     @Path("/tweets")
@@ -38,7 +61,7 @@ public class TweetResource {
     public Response getTwee() {
 
         if(expirationTime < System.currentTimeMillis()){
-            List<Pojo> value = service.getTweet(twitter);;
+            List<Pojo> value = svc.getTweet(twitter);;
             expirationTime = cache.putCache(value, expTimeInMillis);
             return Response.ok(value).build();
         }
@@ -62,13 +85,13 @@ public class TweetResource {
 //        for (Integer l:list) {
 //            System.out.println(l);
 //        }
-        List<Pojo> value = service.filterTweet(twitter);;
+        List<Pojo> value = svc.filterTweet(twitter);
         return Response.ok(value).build();
     }
     @Path("/post")
     @POST
     public String postTwee(String message){
-        service.postTweet(twitter, message);
+        svc.postTweet(twitter, message);
         return "Tweet posted";
     }
 }

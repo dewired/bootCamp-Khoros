@@ -1,6 +1,6 @@
 package com.akash;
 
-import com.akash.resources.TweetResource;
+//import com.akash.resources.TweetResource;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 import io.dropwizard.Application;
@@ -8,16 +8,11 @@ import io.dropwizard.assets.AssetsBundle;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
 
-import org.eclipse.jetty.servlets.CrossOriginFilter;
 import ru.vyarus.dropwizard.guice.GuiceBundle;
 
 import twitter4j.Twitter;
 import twitter4j.TwitterFactory;
 import twitter4j.conf.ConfigurationBuilder;
-
-import javax.servlet.DispatcherType;
-import javax.servlet.FilterRegistration;
-import java.util.EnumSet;
 //import com.akash.AppConfig.java;
 
 
@@ -25,7 +20,7 @@ public class Main extends Application<AppConfig> {
 
     //private Twitter twitter;
     private long expTime;
-    private TweetResource resource;
+    // TweetResource resource;
     private static Twitter twitter = null;
 
     public static Twitter getTwitterInstance(){
@@ -39,10 +34,10 @@ public class Main extends Application<AppConfig> {
 
     @Override
     public void initialize(Bootstrap<AppConfig> bootstrap) {
-        bootstrap.addBundle(GuiceBundle.builder()
-                .enableAutoConfig(getClass().getPackage().getName())
-                .modules(new GuiceInjectionModule(resource))
-                .build());
+//        bootstrap.addBundle(GuiceBundle.builder()
+//                .enableAutoConfig(getClass().getPackage().getName())
+//                .modules(new GuiceInjectionModule(resource))
+//                .build());
         bootstrap.addBundle(new AssetsBundle("/assets","/home","index.html"));
     }
 
@@ -50,13 +45,6 @@ public class Main extends Application<AppConfig> {
 
     @Override
     public void run(AppConfig appConfig, Environment environment) throws Exception {
-        final FilterRegistration.Dynamic cors = environment.servlets().addFilter("CORS", CrossOriginFilter.class);
-        cors.setInitParameter("allowedOrigins", "*");
-        cors.setInitParameter("allowedHeaders", "X-Requested-With,Content-Type,Accept,Origin");
-        cors.setInitParameter("allowedMethods", "OPTIONS,GET,PUT,POST,DELETE,HEAD");
-
-        // Add URL mapping
-        cors.addMappingForUrlPatterns(EnumSet.allOf(DispatcherType.class), true, "/*");
 //
 //        ConfigurationBuilder cb = new ConfigurationBuilder();
 //        cb.setDebugEnabled(true);

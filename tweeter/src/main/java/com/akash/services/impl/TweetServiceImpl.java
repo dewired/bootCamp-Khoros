@@ -33,7 +33,7 @@ public class TweetServiceImpl implements TweetService {
         logger.info("GET REQUEST INITIATED");
 
         try{
-            System.out.println("hello get tweets");
+            System.out.println("hello get tweets from service 1");
             final List<Status> value = twitter.getHomeTimeline(new Paging());
             //System.out.println(value);
          //   Logger logger = LoggerFactory.getLogger(TweetServiceImpl.class);
