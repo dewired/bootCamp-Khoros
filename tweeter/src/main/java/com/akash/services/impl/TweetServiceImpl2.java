@@ -46,7 +46,7 @@ public class TweetServiceImpl2 implements TweetService {
                 pojo.setHandle(status.getUser().getScreenName());
                 pojo.setName(status.getUser().getName());
                 pojo.setProfileImgUrl(status.getUser().getProfileImageURL());
-                pojo.setCreatedAt(status.getCreatedAt());
+//                pojo.setCreatedAt(status.getCreatedAt());
 
                 details.add(pojo);
             }

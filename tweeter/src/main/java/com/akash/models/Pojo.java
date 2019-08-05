@@ -8,7 +8,8 @@ public class Pojo {
     private String handle;
     private String name;
     private String profileImgUrl;
-    private Date createdAt;
+    private String createdAt;
+    private String link;
 
 // Setters
 
@@ -35,14 +36,17 @@ public class Pojo {
         this.profileImgUrl = profileImgUrl;
     }
 
-    public void setCreatedAt(Date createdAt){
+    public void setCreatedAt(String createdAt){
 
         this.createdAt = createdAt;
 
     }
 
+    public void setLink(String link) {
+        this.link = link;
+    }
 
-// Getters
+    // Getters
 
     public String getMessage(){
 
@@ -68,11 +72,13 @@ public class Pojo {
 
    }
 
-    public Date getCreatedAt(){
+    public String getCreatedAt(){
 
         return createdAt;
 
    }
 
-
+    public String getLink() {
+        return link;
+    }
 }

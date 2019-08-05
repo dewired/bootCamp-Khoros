@@ -17,6 +17,7 @@ import twitter4j.TwitterException;
 import javax.ws.rs.DefaultValue;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Response;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -38,6 +39,7 @@ public class TweetServiceImpl implements TweetService {
             //System.out.println(value);
          //   Logger logger = LoggerFactory.getLogger(TweetServiceImpl.class);
             logger.error("An exception occurred!", new Exception("Custom exception"));
+            SimpleDateFormat sdf = new SimpleDateFormat("MMMM d, yyyy 'at' h:mm a");
             for (Status status: value)
             {
                 Pojo pojo = new Pojo();
@@ -46,7 +48,10 @@ public class TweetServiceImpl implements TweetService {
                 pojo.setHandle(status.getUser().getScreenName());
                 pojo.setName(status.getUser().getName());
                 pojo.setProfileImgUrl(status.getUser().getProfileImageURL());
-                pojo.setCreatedAt(status.getCreatedAt());
+                pojo.setCreatedAt(sdf.format(status.getCreatedAt()));
+                String url= "https://twitter.com/" + status.getUser().getScreenName()
+                        + "/status/" + status.getId();
+                pojo.setLink(url);
 
                 details.add(pojo);
             }
